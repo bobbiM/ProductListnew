@@ -8,14 +8,23 @@ namespace ProductList.Models
 {     
     public class Product
     {
-        public enum UnitTypes
+        public static String[] CategoryTypes
         {
-            Item, Meter, Box, Roll, Sheet
+            get
+            {
+                return new String[] { "Electrical", "Equipment", "Building", "Cables" };
+            }
         }
-        public enum CategoryTypes
+
+        public static String[] UnitTypes
         {
-            Electrical, Equipment, Building, Cables
+            get
+            {
+                return new String[] { "Item", "Meter", "Box", "Roll", "Sheet" };
+            }
         }
+       
+       
         [Key]
         [StringLength(15)]
         [DisplayName("Product Code")]
@@ -27,10 +36,12 @@ namespace ProductList.Models
         public string ProductName { get; set; }
 
         [Required(ErrorMessage = "Please enter category.")]
-        public CategoryTypes Category { get; set; }
+        [DisplayName("Category")]
+        public string Category { get; set; }
 
         [Required(ErrorMessage = "Please select unit description")]
-        public UnitTypes Unit { get; set; }
+        [DisplayName("Unit")]
+        public string Unit { get; set; }
 
 
         [Required]

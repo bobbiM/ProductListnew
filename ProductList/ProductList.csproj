@@ -206,6 +206,10 @@
     <Compile Include="Migrations\201612051712321_UnitEnum.Designer.cs">
       <DependentUpon>201612051712321_UnitEnum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612072221084_FirstMigration1.cs" />
+    <Compile Include="Migrations\201612072221084_FirstMigration1.Designer.cs">
+      <DependentUpon>201612072221084_FirstMigration1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -306,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612051712321_UnitEnum.resx">
       <DependentUpon>201612051712321_UnitEnum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612072221084_FirstMigration1.resx">
+      <DependentUpon>201612072221084_FirstMigration1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using ProductList.Models;
 
@@ -20,14 +16,14 @@ namespace ProductList.Controllers
             return View(db.Products.ToList());
         }
 
-        // GET: Products/Details/5
-        public ActionResult Details(string productCode)
+        // GET: Products/Details/productCode
+        public ActionResult Details(string id)
         {
-            if (productCode == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(productCode);
+            Product product = db.Products.Find(id);            
             if (product == null)
             {
                 return HttpNotFound();
@@ -35,9 +31,12 @@ namespace ProductList.Controllers
             return View(product);
         }
 
+
         // GET: Products/Create
         public ActionResult Create()
         {
+            ViewBag.Category = new SelectList(Product.CategoryTypes);
+            ViewBag.Unit = new SelectList(Product.UnitTypes);
             return View();
         }
 
@@ -58,28 +57,32 @@ namespace ProductList.Controllers
             return View(product);
         }
 
-        // GET: Products/Edit/5
-        public ActionResult Edit(string productCode)
+        // GET: Products/Edit/productCode
+        public ActionResult Edit(string id)
         {
-            if (productCode == null)
+            ViewBag.Category = new SelectList(Product.CategoryTypes);
+            ViewBag.Unit = new SelectList(Product.UnitTypes);
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(productCode);
+            Product product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
             return View(product);
+            
         }
 
-        // POST: Products/Edit/5
+        // POST: Products/Edit/productCode
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ProductCode,ProductName,Category,Unit,ProductPrice")] Product product)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Entry(product).State = EntityState.Modified;
@@ -89,14 +92,14 @@ namespace ProductList.Controllers
             return View(product);
         }
 
-        // GET: Products/Delete/5
-        public ActionResult Delete(string productCode)
+        // GET: Products/Delete/productCode
+        public ActionResult Delete(string id)
         {
-            if (productCode == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(productCode);
+            Product product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -107,9 +110,9 @@ namespace ProductList.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string productCode)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Product product = db.Products.Find(productCode);
+            Product product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
