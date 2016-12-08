@@ -27,45 +27,51 @@ namespace ProductList.Controllers
         }
 
         // GET: products/productCode/GF250
+        //[ResponseType(typeof(Product))]
+        //[Route("productCode/{productCode}")]
+        //public IHttpActionResult GetProduct(string productCode)
+        //{
+        //    Product product = db.Products.Find(productCode);
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(product);
+        //}
+
+        // GET: products/productCode/GF250
         [ResponseType(typeof(Product))]
         [Route("productCode/{productCode}")]
         public IHttpActionResult GetProduct(string productCode)
         {
-            Product product = db.Products.Find(productCode);
-            if (product == null)
+            var product = db.Products.Where(p=>p.ProductCode.Contains(productCode.ToUpper())).OrderBy(p => p.ProductCode);
+            if (product.Count()>0)
+            {
+                return Ok(product.ToList());
+            }
+            else
             {
                 return NotFound();
             }
-
-            return Ok(product);
+            
         }
 
-        /*// GET: products/category/electrical
-        [ResponseType(typeof(Product))]
-        [Route("category/{category}")]
-        public IHttpActionResult GetProductsInCategory(int category)
-        {
-            var productsInCategory = db.Products.Where(p => (int)p.Category == category).OrderBy(p => p.ProductCode);
-            if (productsInCategory == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(productsInCategory.ToList());
-        }*/
 
         // GET: products/category/electrical
         [ResponseType(typeof(Product))]
         [Route("category/{category}")]
         public IHttpActionResult GetProductsInCategory(string category)
         {
-            var productsInCategory = db.Products.Where(p => p.Category.ToString() == category.ToUpper()).OrderBy(p => p.ProductCode);
-            if (productsInCategory == null)
+            var productsInCategory = db.Products.Where(p => p.Category.Contains(category.ToUpper())).OrderBy(p => p.ProductCode);
+            if (productsInCategory.Count()>0)
             {
-                return NotFound();
+                return Ok(productsInCategory);
             }
-
-            return Ok(productsInCategory.ToList());
+            else
+            {
+                return NotFound();             
+            }
         }
 
         // GET: products/productName/keyword
@@ -74,12 +80,15 @@ namespace ProductList.Controllers
         public IHttpActionResult GetProductsByKeyword(string keyword)
         {
             var query = db.Products.Where(p => p.ProductName.Contains(keyword.ToUpper())).OrderBy(p => p.ProductCode);
-            if (query == null)
+            if (query.Count() >0)
+            {
+                return Ok(query.ToList());
+                
+            }
+            else
             {
                 return NotFound();
             }
-
-            return Ok(query.ToList());
         }
 
 

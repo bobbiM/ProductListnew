@@ -49,10 +49,11 @@
                 @Html.DisplayFor(modelItem => item.ProductPrice)
             </td>
             <td>
+            <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ProductCode }) |
                 @Html.ActionLink("Details", "Details", new { id = item.ProductCode }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ProductCode })
-            </td>
+            </td>             
         </tr>
     }
 
