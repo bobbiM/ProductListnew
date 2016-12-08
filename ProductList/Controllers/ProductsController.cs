@@ -10,8 +10,13 @@ namespace ProductList.Controllers
     {
         private ProductContext db = new ProductContext();
 
-        // GET: Products
+        // Products
         public ActionResult Index()
+        {
+            return View();
+        }
+        //Get: Products
+        public ActionResult Products()
         {
             return View(db.Products.ToList());
         }
