@@ -28,10 +28,12 @@ namespace ProductList.Models
         [Key]
         [StringLength(15)]
         [DisplayName("Product Code")]
+        [RegularExpression(@"^[a - zA - Z0 - 9,.'@]+$ ")]
         public string ProductCode { get; set; }
 
         [Required(ErrorMessage = "Please enter product name.")]
         [DisplayName("Product Name")]
+        [RegularExpression(@"^[a - zA - Z0 - 9,.'@]+$ ")]
         [StringLength(55)]                                 //using Excel formula "=LEN(cell) the longest existing name is 54 char
         public string ProductName { get; set; }
 
