@@ -3,6 +3,8 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using ProductList.Models;
+using System;
+using System.Collections.Generic;
 
 namespace ProductList.Controllers
 {
@@ -16,10 +18,24 @@ namespace ProductList.Controllers
             return View();
         }
         //Get: Products
-        public ActionResult Products()
+        public ActionResult Products(string category,string keyword)
         {
-            return View(db.Products.ToList());
+            var categories = new List<string>();
+            var query = from p in db.Products orderby p.Category select p.Category;
+            categories.AddRange(query.Distinct());
+            ViewBag.category = new SelectList(categories);
+            var products = from p in db.Products select p;
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                products = products.Where(p => p.ProductCode.Contains(keyword)||p.ProductName.Contains(keyword));
+            }
+            if(!String.IsNullOrEmpty(category))
+            {
+                products = products.Where(p => p.Category == category);
+            }
+            return View(products);            
         }
+ 
 
         // GET: Products/Details/productCode
         public ActionResult Details(string id)
@@ -76,8 +92,7 @@ namespace ProductList.Controllers
             {
                 return HttpNotFound();
             }
-            return View(product);
-            
+            return View(product);           
         }
 
         // POST: Products/Edit/productCode
@@ -122,6 +137,7 @@ namespace ProductList.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+      
 
         protected override void Dispose(bool disposing)
         {

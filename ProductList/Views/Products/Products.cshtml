@@ -8,7 +8,16 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
+   
 </p>
+@using (Html.BeginForm("Products", "Products", FormMethod.Get))
+{
+    <p>
+        Select category: @Html.DropDownList("category", "All")
+        Find Product: @Html.TextBox("keyword") <input type="submit" value="Find" />
+        
+    </p>
+}
 <table class="table">
     <tr>
         <th>
