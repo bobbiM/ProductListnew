@@ -1,0 +1,31 @@
+﻿@* 
+ This partial controls the left menu of the AdminLTE dashboard and is called automatically by _AdminLteLayout
+    This is where you can add, modify, or remove navigation options in your app
+    TODO: This preserves the links as-is for the demo, which lead to broken pages!
+    It's up to you to make sure these links either get deleted or lead somewhere REAL!
+*@
+
+
+@{
+    Layout = null;
+}
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">                      
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li>@Html.ActionLink("Purchases", "Index","Products")</li>            
+            <li>@Html.ActionLink("Sales", "Index","Products")</li>
+            <li>@Html.ActionLink("Customer","Index", "Products")</li>
+            <li>@Html.ActionLink("Supplier", "Index", "Products")</li>             
+            <li>@Html.ActionLink("Products", "Index", "Products")</li>
+            <li>@Html.ActionLink("Reports", "Index", "Products")</li>
+            
+           
+         
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

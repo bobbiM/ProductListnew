@@ -5,6 +5,9 @@ using System.Web.Mvc;
 using ProductList.Models;
 using System;
 using System.Collections.Generic;
+using System.Web.UI.WebControls;
+using System.IO;
+using System.Web.UI;
 
 namespace ProductList.Controllers
 {
@@ -137,7 +140,28 @@ namespace ProductList.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-      
+
+        //export product list to excel file
+        public ActionResult ExportToExcel()
+        {
+            GridView gv = new GridView();
+            gv.DataSource = db.Products.ToList();
+            gv.DataBind();
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=Productlist.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.Charset = "";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            gv.RenderControl(htw);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+
+            return RedirectToAction("Products");
+        }
+
 
         protected override void Dispose(bool disposing)
         {

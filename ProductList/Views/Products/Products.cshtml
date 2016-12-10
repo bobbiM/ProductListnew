@@ -10,6 +10,13 @@
     @Html.ActionLink("Create New", "Create")
    
 </p>
+@using (Html.BeginForm("ExportToExcel", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <tr><td></td><td><input type="submit" name="Export" id="Export" value="Export" /></td></tr>
+
+    </table>
+}
 @using (Html.BeginForm("Products", "Products", FormMethod.Get))
 {
     <p>
