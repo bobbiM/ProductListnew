@@ -9,6 +9,10 @@
 
 <header class="main-header">
     <!-- Logo -->
+    <a href="~/Home/Index" class="logo">
+        <!-- Add the class icon to your logo image or logo icon to add the margining -->
+       WebInventory
+    </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">       
             <!-- Sidebar toggle button-->
@@ -17,16 +21,14 @@
             </a>
             <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>                    
+                <ul class="nav navbar-nav">                                     
                     <li class="dropdown Button" role="link">
                         
                         <a href="~/Products/Index" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" role="link" aria-expanded="false">Products <span class="caret"></span></a>
                         
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="~/Products/Products">View All Products</a></li>
+                            <li><a href="~/Products/Index">View All Products</a></li>
                             <li><a href="~/Products/Create">Add New Product</a></li>
-                            <li><a href="~/Products/Products">Email Price List</a></li>                           
                         </ul>
                     </li>                    
                     

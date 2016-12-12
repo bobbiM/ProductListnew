@@ -16,12 +16,7 @@ namespace ProductList.Controllers
         private ProductContext db = new ProductContext();
 
         // Products
-        public ActionResult Index()
-        {
-            return View();
-        }
-        //Get: Products
-        public ActionResult Products(string category,string keyword)
+        public ActionResult Index(string category, string keyword)
         {
             var categories = new List<string>();
             var query = from p in db.Products orderby p.Category select p.Category;
@@ -30,15 +25,15 @@ namespace ProductList.Controllers
             var products = from p in db.Products select p;
             if (!String.IsNullOrEmpty(keyword))
             {
-                products = products.Where(p => p.ProductCode.Contains(keyword)||p.ProductName.Contains(keyword));
+                products = products.Where(p => p.ProductCode.Contains(keyword) || p.ProductName.Contains(keyword));
             }
-            if(!String.IsNullOrEmpty(category))
+            if (!String.IsNullOrEmpty(category))
             {
                 products = products.Where(p => p.Category == category);
             }
-            return View(products);            
+            return View(products);
         }
- 
+                
 
         // GET: Products/Details/productCode
         public ActionResult Details(string id)
@@ -161,7 +156,7 @@ namespace ProductList.Controllers
 
             return RedirectToAction("Products");
         }
-
+       
 
         protected override void Dispose(bool disposing)
         {

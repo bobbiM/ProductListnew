@@ -1,19 +1,21 @@
 ﻿@model ProductList.Models.Product
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Add New Product";
 }
 
-<h2>Create</h2>
+<h2></h2>
 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Product</h4>
+    <div class="form-horizontal" >
+        
         <hr />
+        
+        
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.ProductCode, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -34,15 +36,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Category")
+                @Html.DropDownList("Category",(IEnumerable<SelectListItem>)ViewBag.Category, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>       
 
         <div class="form-group">
             @Html.LabelFor(model => model.Unit, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Unit")
+                @Html.DropDownList("Unit", (IEnumerable<SelectListItem>)ViewBag.Unit, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Unit, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -57,7 +59,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Add" class="btn btn-default" />
             </div>
         </div>
     </div>

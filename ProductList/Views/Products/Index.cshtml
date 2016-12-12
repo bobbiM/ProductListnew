@@ -1,18 +1,75 @@
-﻿@model ProductList.Models.Product
+﻿@model IEnumerable<ProductList.Models.Product>
 
 @{
-    ViewBag.Title = "";
+    ViewBag.Title = "Products";
 }
 
-<h2>Products</h2>
-<div class="btn-group-vertical btn-group-lg">
 
-    <a href="~/Products/Products" class="btn btn-default">View All Products</a>
-    <a href="~/Products/Create" class="btn btn-default">Add New Product</a>
-    <a href="#" class="btn btn-default">Button</a>
-    <a href="#" class="btn btn-default">Button</a>
+<div class="btn-toolbar">   
+    <div class="btn-group">
+        <a href="~/Products/Create" class="btn btn-default">Add New Product</a>
+    </div>
+
+    <div class="btn-group">
+        <a href="~/Products/ExportToExcel" class="btn btn-default">Export to Excel</a>
+    </div> 
 </div>
+<br />
+
+@using (Html.BeginForm("Index", "Products", FormMethod.Get))
+{
+    <p>
+        Select category: @Html.DropDownList("category", "All")
+        Find Product: @Html.TextBox("keyword") <input type="submit" value="Search" />
+    </p>
+}
 
 
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductCode)
+        </th>
 
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </th>
+        <th></th>
+    </tr>
 
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductCode }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductCode }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductCode })
+            </td>
+        </tr>
+    }
+
+</table>

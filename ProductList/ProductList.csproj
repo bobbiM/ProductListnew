@@ -242,6 +242,7 @@
     <Content Include="Content\AdminLTE\img\credit\visa.png" />
     <Content Include="Content\AdminLTE\img\default-50x50.gif" />
     <Content Include="Content\AdminLTE\img\icons.png" />
+    <Content Include="Content\AdminLTE\img\logoWeb.jpg" />
     <Content Include="Content\AdminLTE\img\photo1.png" />
     <Content Include="Content\AdminLTE\img\photo2.png" />
     <Content Include="Content\AdminLTE\img\stockMgt.jpg" />
@@ -847,12 +848,11 @@
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\Products\Products.cshtml" />
     <Content Include="Views\Shared\_AdminLteTopMenu.cshtml" />
     <Content Include="Views\Shared\_AdminLteLeftMenu.cshtml" />
     <Content Include="Views\Shared\_AdminLteLayout.cshtml" />
     <Content Include="Views\Shared\_AdminLteBreadcrumb.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

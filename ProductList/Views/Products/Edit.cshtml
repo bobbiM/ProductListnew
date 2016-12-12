@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2></h2>
 
 
 @using (Html.BeginForm())
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Category")
+                @Html.DropDownList("Category", (IEnumerable<SelectListItem>)ViewBag.Category, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Unit, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Unit")
+                @Html.DropDownList("Unit", (IEnumerable<SelectListItem>)ViewBag.Unit, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Unit, "", new { @class = "text-danger" })
             </div>
         </div>

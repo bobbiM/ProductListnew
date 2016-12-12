@@ -11,11 +11,16 @@
 }
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">                      
+    <section class="sidebar">
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>                             
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu">
+        <ul class="sidebar-menu">           
             <li class="header">MAIN NAVIGATION</li>
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
             <li>@Html.ActionLink("Purchases", "Index","Products")</li>            
             <li>@Html.ActionLink("Sales", "Index","Products")</li>
             <li>@Html.ActionLink("Customer","Index", "Products")</li>

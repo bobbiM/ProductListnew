@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+﻿using System.Data;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ProductList.Models;
-using System.Web.Http;
 using System.Web.Routing;
 
 namespace ProductList.Controllers
@@ -26,7 +19,7 @@ namespace ProductList.Controllers
             return db.Products;
         }
 
-        // GET: products/productCode/GF250
+        // GET: products/productCode/GF250, get one product only
         //[ResponseType(typeof(Product))]
         //[Route("productCode/{productCode}")]
         //public IHttpActionResult GetProduct(string productCode)
@@ -40,7 +33,7 @@ namespace ProductList.Controllers
         //    return Ok(product);
         //}
 
-        // GET: products/productCode/GF250
+        // GET: products/productCode/GF250  get product containing a keyword
         [ResponseType(typeof(Product))]
         [Route("productCode/{productCode}")]
         public IHttpActionResult GetProduct(string productCode)
